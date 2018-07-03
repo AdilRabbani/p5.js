@@ -49,6 +49,11 @@ p5.RendererGL.prototype.beginShape = function(mode) {
     this.immediateMode.lineVertexBuffer = this.GL.createBuffer();
     this.immediateMode.lineNormalBuffer = this.GL.createBuffer();
     this.immediateMode.pointVertexBuffer = this.GL.createBuffer();
+    this.immediateMode._bezierVertex = [];
+    this.immediateMode._quadraticVertex = [];
+    this.immediateMode._curveVertex_x = [];
+    this.immediateMode._curveVertex_y = [];
+    this.immediateMode._curveVertex_z = [];
   } else {
     this.immediateMode.vertices.length = 0;
     this.immediateMode.edges.length = 0;
@@ -100,6 +105,13 @@ p5.RendererGL.prototype.vertex = function(x, y) {
   );
 
   this.immediateMode.uvCoords.push(u, v);
+  this.immediateMode._bezierVertex[0] = x;
+  this.immediateMode._bezierVertex[1] = y;
+  this.immediateMode._bezierVertex[2] = z;
+
+  this.immediateMode._quadraticVertex[0] = x;
+  this.immediateMode._quadraticVertex[1] = y;
+  this.immediateMode._quadraticVertex[2] = z;
 
   return this;
 };
@@ -159,6 +171,11 @@ p5.RendererGL.prototype.endShape = function(
   this.immediateMode.vertexColors.length = 0;
   this.immediateMode.uvCoords.length = 0;
   this.isImmediateDrawing = false;
+  this.immediateMode._bezierVertex = [];
+  this.immediateMode._quadraticVertex = [];
+  this.immediateMode._curveVertex_x = [];
+  this.immediateMode._curveVertex_y = [];
+  this.immediateMode._curveVertex_z = [];
 
   return this;
 };
