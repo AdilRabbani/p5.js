@@ -450,6 +450,9 @@ p5.prototype.bezierVertex = function() {
  * }
  * </code>
  * </div>
+ *
+ * @alt
+ * Upside-down u-shape line, mid canvas with the same shape in positive z-axis.
  */
 /**
  * @method curveVertex
